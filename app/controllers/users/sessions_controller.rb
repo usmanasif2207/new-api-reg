@@ -8,13 +8,14 @@ class Users::SessionsController < Devise::SessionsController
         user: current_user},
         status: :ok
     end
+
     def respond_to_on_destroy
       current_user.present? ?   log_out_failure : log_out_success
     end
     def log_out_success
-      render json: { message: "Logged out." }, status: :ok
+      render json: { message: "Logged out.", status: 200 }, status: :ok
     end
     def log_out_failure
-      render json: { message: "Logged out failure."}, status: :unauthorized
+      render json: { message: "Logged out failure.", status: 500 }, status: :ok
     end
   end
