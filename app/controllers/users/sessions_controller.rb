@@ -4,7 +4,7 @@ class Users::SessionsController < Devise::SessionsController
     private
     def respond_with(resource, _opts = {})
       render json: {
-        message: 'You are logged in.',
+        message: 'You are logged in.',jwt: current_token,
         user: current_user},
         status: :ok
     end
@@ -17,5 +17,8 @@ class Users::SessionsController < Devise::SessionsController
     end
     def log_out_failure
       render json: { message: "Logged out failure.", status: 500 }, status: :ok
+    end
+    def current_token
+      request.env['warden-jwt_auth.token']
     end
   end
