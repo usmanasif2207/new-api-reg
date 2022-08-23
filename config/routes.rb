@@ -4,4 +4,6 @@ Rails.application.routes.draw do
                  sessions: 'users/sessions',
                  registrations: 'users/registrations'
              }
+  
+  post "/users/updateUserPaymentStatus", to:"updatepayment#update"
 end
